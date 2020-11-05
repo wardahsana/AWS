@@ -1,0 +1,20 @@
+ #>>>>>>>>>>>>>>>>>>>>>>>>>>> Create EC2 Instance >>>>>>>>>>>>>>>>
+ WebServer:
+  Type: AWS::EC2::Instance
+  Properties:
+   ImageId: ami-0eddd5d08379980d8
+   InstanceType: t2.micro
+   SecurityGroups:
+    - !Ref WebServerSecurityGroup
+   KeyName: li.CloudFormation
+  Metadata:
+   Instance:
+    #Description: This server hosts coffee blog
+ IPAddress:
+  Type: AWS::EC2::EIP
+  # Now associate it to an EC2 resource
+ IPAssoc:
+  Type: AWS::EC2::EIPAssociation
+  Properties:
+   InstanceId: !Ref WebServer
+   EIP: !Ref IPAddress
