@@ -3,7 +3,7 @@ Discription:
   Create a basic template that will setup three resources
 
 Resources:
-  WebserverSecurityGroup:
+  WebServerSecurityGroup:
   Type: AWS::EC2::SecurityGroup
   Properties:
       GroupDescription: Enable HTTP access via port 80 + SSH access
@@ -30,10 +30,10 @@ Resources:
       SecurityGroups: !Ref WebServerSecurityGroup
       #Use KeyName for SSH
       KeyName: sanaU.CloudFormation
-    
-      Metadata:
-        Instance:
-          Description: This server hosts my blog
+
+  Metadata:
+    Instance:
+      Description: This server hosts my blog
 
 #Create resource number four: Elastic IP address
   IPAddress:
