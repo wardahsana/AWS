@@ -1,3 +1,4 @@
+
 AWSTemplateFormatVersion: "2010-09-09"
 Discription:
   Create a basic template that will setup three resources
@@ -6,20 +7,20 @@ Resources:
   WebServerSecurityGroup:
   Type: AWS::EC2::SecurityGroup
   Properties:
-      GroupDescription: Enable HTTP access via port 80 + SSH access
-      #VpcId:
-       #  Ref: myVPC
+    GroupDescription: Enable HTTP access via port 80 + SSH access
+    #VpcId:
+    #  Ref: myVPC
 #Here I am allowing two rules for my in comming and out going trafic
-      SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: 80
-        ToPort: 80
-        CidrIp: 0.0.0.0/0
-      SecurityGroupEgress:
-      - IpProtocol: tcp
-        FromPort: 80
-        ToPort: 80
-        CidrIp: 0.0.0.0/0
+    SecurityGroupIngress:
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIp: 0.0.0.0/0
+    SecurityGroupEgress:
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIp: 0.0.0.0/0
 # My EC2
   WebServer:
     Type: AWS::EC2::Instance
@@ -27,13 +28,11 @@ Resources:
       # 4 properties of my server 
       ImageId: ami-01419b804382064e4
       InstanceType: t2.small
-      SecurityGroups: !Ref WebServerSecurityGroup
+      SecurityGroups: 
+        Ref: WebServerSecurityGroup
       #Use KeyName for SSH
       KeyName: sanaU.CloudFormation
 
-  Metadata:
-    Instance:
-      Description: This server hosts my blog
 
 #Create resource number four: Elastic IP address
   IPAddress:
@@ -42,5 +41,7 @@ Resources:
   IPAssoc:
     Type: AWS::EC2::EIPAssociation
     Properties:
-      InstanceId: !Ref WebServer
-      EIP: !Ref IPAddress
+      InstanceId:
+        Ref: WebServer
+      EIP:
+        Ref: IPAddress
