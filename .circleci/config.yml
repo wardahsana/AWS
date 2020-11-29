@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run: echo "A first hello"
       - run: mkdir -p my_workspace
-      - run: echo "Trying out workspaces" > my_workspace/echo-output
+      - run: echo "Trying out workspaces the second time" > my_workspace/echo-output
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory
           root: my_workspace
@@ -44,4 +44,5 @@ workflows:
       - two:
           requires:
             - one
-#this file is going to be modified and new code shall be added
+#this file is going to be modified and new code shall be added#
+#adding another line
